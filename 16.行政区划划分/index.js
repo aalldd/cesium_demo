@@ -2,7 +2,7 @@
  * @Author: wangshiyang
  * @Date: 2023-05-26 13:53:23
  * @LastEditors: wangshiyang
- * @LastEditTime: 2023-05-31 11:16:02
+ * @LastEditTime: 2023-05-31 15:20:38
  * @Description: 请填写简介
  */
 Cesium.Ion.defaultAccessToken =
@@ -48,17 +48,26 @@ const initViewer = () => {
         console.log(err);
       });
   };
-  const position = Cesium.Cartesian3.fromDegrees(110, 20, 20000);
-  //设置视图
-  setTimeout(() => {
-    viewer.camera.flyTo({
-      destination: position,
-      duration: 3,
-    });
-  }, 2000);
+
+  const setView = () => {
+    let flyToOpts = {
+      destination: {
+        x: -3689145.550576342,
+        y: 9014321.046112215,
+        z: 3271299.847963448
+      },
+      orientation: {
+        heading: 6.152898109215222,
+        pitch: -1.2244489846093436,
+        roll: 0.0000496938359031418
+      }
+    };
+    viewer.scene.camera.setView(flyToOpts);
+  };
 
   initRegion();
   initLabel();
+  setView();
 };
 
 window.onload = initViewer;
